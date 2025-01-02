@@ -33,40 +33,23 @@ export function ChatPanel({
 
   const exampleMessages = [
     {
-      heading: 'What is the price',
-      subheading: 'of Apple Inc.?',
-      message: 'What is the price of Apple stock?'
+      message: 'What is the price of Apple Inc.?'
     },
     {
-      heading: 'Show me a stock chart',
-      subheading: 'for $GOOGL',
-      message: 'Show me a stock chart for $GOOGL'
+      message: 'Show me a stock chart for $GOOGL.'
     },
     {
-      heading: 'What are some recent',
-      subheading: `events about Amazon?`,
-      message: `What are some recent events about Amazon?`
+      message: 'Tell me Recent events about Amazon.'
     },
     {
-      heading: `What are Microsoft's`,
-      subheading: 'latest financials?',
       message: `What are Microsoft's latest financials?`
     },
     {
-      heading: 'How is the stock market',
-      subheading: 'performing today by sector?',
-      message: `How is the stock market performing today by sector?`
-    },
-    {
-      heading: 'Show me a screener',
-      subheading: 'to find new stocks',
-      message: 'Show me a screener to find new stocks'
+      message: 'Show me a screener to find new stocks.'
     }
   ]
 
   interface ExampleMessage {
-    heading: string
-    subheading: string
     message: string
   }
 
@@ -91,12 +74,18 @@ export function ChatPanel({
           {messages.length === 0 &&
             randExamples.map((example, index) => (
               <div
-                key={example.heading}
+                key={example.message}
                 className={`
-                    cursor-pointer border bg-white p-4 
-                    hover:bg-zinc-50 dark:bg-zinc-950 dark:hover:bg-zinc-900
-                    ${index >= 4 ? 'hidden md:block' : ''}
-                    ${index >= 2 ? 'hidden 2xl:block' : ''}
+                    cursor-pointer p-3 
+                    bg-gradient-to-r from-blue-500/80 to-purple-500/80
+                    hover:from-blue-600 hover:to-purple-600
+                    text-white font-medium rounded-xl
+                    transform transition-all duration-300
+                    hover:-translate-y-1 hover:shadow-xl
+                    border border-white/20 backdrop-blur-sm
+                    dark:from-blue-600/50 dark:to-purple-600/50
+                    dark:hover:from-blue-500/70 dark:hover:to-purple-500/70
+                    ${index >= 2 ? 'hidden' : ''}
                   `}
                 onClick={async () => {
                   setMessages(currentMessages => [
@@ -116,10 +105,7 @@ export function ChatPanel({
                   ])
                 }}
               >
-                <div className="text-sm font-semibold">{example.heading}</div>
-                <div className="text-sm text-zinc-600">
-                  {example.subheading}
-                </div>
+                <div className="text-sm">{example.message}</div>
               </div>
             ))}
         </div>

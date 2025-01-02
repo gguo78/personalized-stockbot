@@ -3,11 +3,17 @@
 import React, { useEffect, useRef, memo } from 'react'
 
 type ComparisonSymbolObject = {
-  symbol: string;
-  position: "SameScale";
-};
+  symbol: string
+  position: 'SameScale'
+}
 
-export function StockChart({ symbol, comparisonSymbols }: { symbol: string, comparisonSymbols: ComparisonSymbolObject[] }) {
+export function StockChart({
+  symbol,
+  comparisonSymbols
+}: {
+  symbol: string
+  comparisonSymbols: ComparisonSymbolObject[]
+}) {
   const container = useRef<HTMLDivElement>(null)
 
   useEffect(() => {

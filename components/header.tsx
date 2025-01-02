@@ -4,63 +4,73 @@ import Image from 'next/image'
 
 import { cn } from '@/lib/utils'
 import { Button, buttonVariants } from '@/components/ui/button'
-import {
-  IconGitHub,
-  IconGroq,
-  IconSeparator,
-  IconVercel
-} from '@/components/ui/icons'
-import { Session } from '@/lib/types'
+import { IconGitHub } from '@/components/ui/icons'
 
 async function UserOrLogin() {
   return (
-    <>
-      <Link href="https://wow.groq.com/groq-labs/" rel="nofollow">
-        {/* <IconGroq className="size-6 mr-2 dark:hidden" />
-          <IconGroq className="hidden size-6 mr-2 dark:block" /> */}
-        <Image
-          src="/groqlabs-logo-black.png"
-          alt="GroqLabs Logo"
-          width={100}
-          height={30}
-        />
+    <div className="flex items-center gap-4">
+      <Link href="/" className="flex items-center">
+        <div className="flex items-center gap-3">
+          <Image
+            src="/trade-sphere.png"
+            alt="TradeSphere Logo"
+            width={40}
+            height={40}
+            className="rounded-lg"
+          />
+          <span className="font-bold text-xl hidden md:inline-block">
+            TradeSphere
+          </span>
+        </div>
       </Link>
-
       <div className="flex items-center font-semibold">
-        <IconSeparator className="size-6 text-muted-foreground/50" />
-        <a href="/new">StockBot</a>
-        <IconSeparator className="size-6 text-muted-foreground/50" />
-        <a
+        <Link
           href="/new"
-          rel="noopener noreferrer"
-          className={cn(buttonVariants({ variant: 'ghost' }))}
-          style={{ borderRadius: 0, color: '#F55036', padding: '4px' }}
+          className={cn(
+            buttonVariants({ variant: 'default' }),
+            'bg-black hover:bg-black/90 text-white rounded-full'
+          )}
         >
-          <span className="flex">Start New Chat</span>
-        </a>
+          Start New Chat
+        </Link>
       </div>
-    </>
+    </div>
   )
 }
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 flex items-center justify-between w-full h-16 px-4 border-b shrink-0 bg-gradient-to-b from-background/10 via-background/50 to-background/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 flex h-16 w-full shrink-0 items-center justify-between border-b bg-gradient-to-b from-background/10 via-background/50 to-background/80 px-4 backdrop-blur-xl">
       <div className="flex items-center">
         <React.Suspense fallback={<div className="flex-1 overflow-auto" />}>
           <UserOrLogin />
         </React.Suspense>
       </div>
-      <div className="flex items-center justify-end space-x-2">
+
+      <div className="flex items-center gap-2">
+        <nav className="hidden md:flex items-center gap-6 mx-6">
+          <Link href="#features" className="text-sm font-medium hover:text-primary transition-colors">
+            Features
+          </Link>
+          <Link href="#market" className="text-sm font-medium hover:text-primary transition-colors">
+            Market
+          </Link>
+          <Link href="#about" className="text-sm font-medium hover:text-primary transition-colors">
+            About
+          </Link>
+        </nav>
+
         <a
           target="_blank"
-          href="https://github.com/bklieger-groq/groq-gen-ui/"
+          href="https://github.com/gguo78/personalized-stockbot"
           rel="noopener noreferrer"
-          className={cn(buttonVariants({ variant: 'outline' }))}
-          style={{ borderRadius: 0 }}
+          className={cn(
+            buttonVariants({ variant: 'outline' }),
+            'hidden sm:flex gap-2'
+          )}
         >
-          <IconGitHub />
-          <span className="hidden ml-2 md:flex">GitHub</span>
+          <IconGitHub className="size-4" />
+          <span>GitHub</span>
         </a>
       </div>
     </header>
